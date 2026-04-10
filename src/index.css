@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #1a1a18;
+  color: #FAFAF8;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a18;
+}
+::-webkit-scrollbar-thumb {
+  background: #0F6E56;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1D9E75;
+}
+
+/* ─── Page Transitions ─── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ─── 3D Card Tilt ─── */
+.card-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* ─── Gradient Overlays ─── */
+.gradient-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(26, 26, 24, 0) 0%,
+    rgba(26, 26, 24, 0.6) 60%,
+    rgba(26, 26, 24, 0.95) 100%
+  );
+}
+
+.gradient-hero {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 110, 86, 0.15) 0%,
+    rgba(29, 158, 117, 0.08) 50%,
+    rgba(26, 26, 24, 0.3) 100%
+  );
+}
+
+/* ─── Glass ─── */
+.glass {
+  background: rgba(26, 26, 24, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(250, 250, 248, 0.08);
+}
+
+.glass-light {
+  background: rgba(250, 250, 248, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(250, 250, 248, 0.1);
+}
+
+/* ─── Shimmer / Skeleton ─── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(250, 250, 248, 0.04) 25%,
+    rgba(250, 250, 248, 0.08) 50%,
+    rgba(250, 250, 248, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ─── Glow ─── */
+.glow-green {
+  box-shadow: 0 0 30px rgba(15, 110, 86, 0.3),
+              0 0 60px rgba(29, 158, 117, 0.15);
+}
+
+/* ─── Category Bubbles ─── */
+.bubble {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.bubble:hover {
+  transform: scale(1.12) translateY(-8px);
+}
+
+/* ─── SVG Path Animation ─── */
+.path-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+/* ─── Loader ─── */
+.loader-spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Count Up ─── */
+.stat-number {
+  font-variant-numeric: tabular-nums;
+}
