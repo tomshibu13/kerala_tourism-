@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
+  const { user, logout } = useAuth()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -59,12 +61,33 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link
-            to="/planner"
-            className="ml-3 px-5 py-2.5 rounded-xl bg-gradient-to-r from-kerala-green to-kerala-teal text-white text-sm font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-kerala-green/30 hover:scale-105"
-          >
-            Plan Your Trip
-          </Link>
+
+          {/* Auth Section */}
+          <div className="ml-4 flex items-center gap-2 border-l border-white/10 pl-4">
+            {user ? (
+              <div className="relative group">
+                <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-white/5 transition-colors">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-kerala-teal to-kerala-green flex justify-center items-center text-xs font-bold">
+                    {user.name.charAt(0)}
+                  </div>
+                  <span className="text-sm font-medium">{user.name.split(' ')[0]}</span>
+                </button>
+                <div className="absolute right-0 mt-2 w-48 py-2 bg-kerala-charcoal border border-white/10 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                  <Link to="/profile" className="block px-4 py-2 text-sm text-kerala-white/70 hover:bg-white/5 hover:text-white">My Profile</Link>
+                  <button onClick={logout} className="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-white/5">Logout</button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <Link to="/login" className="px-4 py-2 text-sm font-medium text-kerala-white/70 hover:text-kerala-white transition-colors">
+                  Log In
+                </Link>
+                <Link to="/register" className="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition-colors border border-white/5">
+                  Sign Up
+                </Link>
+              </>
+            )}
+          </div>
         </div>
 
         {/* Mobile toggle */}

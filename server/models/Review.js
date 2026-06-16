@@ -1,13 +1,14 @@
 import mongoose from 'mongoose';
 
 const reviewSchema = new mongoose.Schema({
-  destinationId: {
-    type: String,
+  place: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Place',
     required: true,
-    index: true,
   },
-  name: {
-    type: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
   },
   rating: {
@@ -16,16 +17,27 @@ const reviewSchema = new mongoose.Schema({
     min: 1,
     max: 5,
   },
-  text: {
+  comment: {
     type: String,
     required: true,
   },
-  date: {
+  images: [{
     type: String,
-    default: 'Just now',
+  }],
+  status: {
+    type: String,
+    enum: ['pending', 'approved', 'rejected'],
+    default: 'approved',
+  },
+  flagged: {
+    type: Boolean,
+    default: false,
+  },
+  flagReason: {
+    type: String,
   },
 }, {
   timestamps: true,
 });
 
-export default mongoose.model('Review', reviewSchema);
+export default mongoose.models.Review || mongoose.model('Review', reviewSchema);

@@ -2,8 +2,14 @@
 const API_BASE = '/api';
 
 async function fetchJSON(url, options = {}) {
+  const token = localStorage.getItem('userToken');
+  const headers = { 'Content-Type': 'application/json' };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   const res = await fetch(`${API_BASE}${url}`, {
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     ...options,
   });
   if (!res.ok) {
@@ -11,6 +17,25 @@ async function fetchJSON(url, options = {}) {
     throw new Error(err.message || 'API request failed');
   }
   return res.json();
+}
+
+// ─── Auth ───────────────────────────────────────────────────────
+export async function loginUser(data) {
+  return fetchJSON('/auth/login', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function registerUser(data) {
+  return fetchJSON('/auth/register', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function getProfile() {
+  return fetchJSON('/auth/profile');
 }
 
 // ─── Destinations ───────────────────────────────────────────────

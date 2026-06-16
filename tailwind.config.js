@@ -7,15 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        'kerala-green': '#0F6E56',
-        'kerala-green-dark': '#0a5643',
-        'kerala-teal': '#1D9E75',
-        'kerala-teal-light': '#25c28f',
-        'kerala-white': '#FAFAF8',
-        'kerala-charcoal': '#1a1a18',
-        'kerala-charcoal-light': '#2a2a28',
-        'kerala-gold': '#D4A843',
-        'kerala-gold-light': '#E8C96A',
+        'kerala-green': '#10B981', // Professional Flat Emerald
+        'kerala-green-dark': '#065F46', // Deep Emerald
+        'kerala-teal': '#0ea5e9',  // Flat Sky Blue (secondary)
+        'kerala-teal-light': '#38bdf8',
+        'kerala-white': '#F8FAFC', // Crisp clean slate-white
+        'kerala-charcoal': '#0F172A', // Flat Deep Slate Backgound
+        'kerala-charcoal-light': '#1E293B', // Flat Slate Cards
+        'kerala-gold': '#EAB308', // Flat Gold
+        'kerala-gold-light': '#FDE047', 
       },
       fontFamily: {
         'heading': ['Playfair Display', 'serif'],
